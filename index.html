@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="./js/jquery-1.4.2.min.js"></script>
+    <!-- <script type="text/javascript" src="./js/jquery.enumerable.js"></script>-->
+    <script type="text/javascript" src="./js/liquidmetal.js"></script>  
+    <script type="text/javascript" src="./js/jquery.metalDetector.js"></script>  
+    <script type="text/javascript">
+    $(document).ready(function(){
+
+      // setup sample data
+      var examples = [
+        [1, 'olivier_newton_john.txt', 'lorem ipsum'],
+        [2, 'stanley Kubrick.doc', 'lorem ipsum kazoo'],
+        [3, 'filename.doc', 'i am a hippopotomus'],
+        [4, 'kazoo.doc', 'i am a walrus'],
+        [5, 'toolbox.js', 'i am a fail'],        
+      ];
+      
+      var sampleHtml = $.map(examples, function(e) {
+        return [
+          '<tr>',
+          '<td> ', e[0],'</td>',
+          '<td> ', e[1],'</td>',
+          '<td> ', e[2],'</td>',
+          '</tr>'
+        ].join('');
+      }).join(''); 
+      
+      console.log($('#searchable').html());
+      
+      $('#searchable').append(sampleHtml);
+
+      $('#search').metalDetector({
+        collection: '#searchable',
+        target: '#searchable tr'
+      });
+      
+    });
+    </script>    
+  </head>
+  <body>
+    <div>
+      <input id="search" />
+      
+      <table>
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>filename</th>
+            <th>descr</th>
+          </tr>
+        </thead>
+        <tbody id="searchable">
+        </tbody>        
+      </table>
+    </div>
+  </body>
+</html>
